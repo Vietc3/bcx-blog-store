@@ -34,8 +34,8 @@
       "pluginOptions": {}
     },
     "relation_articles": {
-      "model": "articles",
-      "via": "relation_products"
+      "via": "relation_products",
+      "model": "articles"
     },
     "main_article": {
       "via": "main_product",

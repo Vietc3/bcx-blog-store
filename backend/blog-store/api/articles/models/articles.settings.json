@@ -40,6 +40,9 @@
     "relation_products": {
       "via": "relation_articles",
       "collection": "product"
+    },
+    "author": {
+      "type": "string"
     }
   }
 }
