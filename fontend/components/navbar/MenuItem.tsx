@@ -9,11 +9,13 @@ interface Props extends BoxProps {
 
 const MenuItem: React.FC<Props> = ({ children, isLast = false, to = '/', ...rest }) => {
     return (
-        <Box variant={'ghost'} as={Button} {...rest}>
-            <Link href={to}>
-                <Text display="block">{children}</Text>
-            </Link>
-        </Box>
+        <Link href={to}>
+        <Button variant={'ghost'} {...rest}>
+            <a>
+            <Text display="block">{children}</Text>
+            </a>             
+        </Button>
+        </Link>
     );
 };
 

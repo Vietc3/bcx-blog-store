@@ -51,3 +51,5 @@ export const FOOTER_BOTTOM_LINKS = [
     { href: '/', title: 'Terms Of Use' },
     { href: '/', title: 'Privacy Policy' },
 ];
+
+export const URL_BASE = 'http://localhost:1337'

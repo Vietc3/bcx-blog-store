@@ -36,7 +36,10 @@ const Footer: React.FC<Props> = () => {
                         <Box alignItems="center">
                             <Box padding={'2px'} _hover={{ textDecoration: 'underline' }} cursor="pointer">
                                 <Link href="/">
+                                    <a>
                                     <Logo />
+                                    </a>
+                                   
                                 </Link>
                             </Box>
 

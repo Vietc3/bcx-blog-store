@@ -31,11 +31,15 @@ const Navbar: React.FC<Props> = () => {
                 maxW={styles.mainMaxWidth}
                 mx={'auto'}
             >
-                <Button variant="ghost">
-                    <Link href="/">
-                        <Logo color={colors.primary} />
-                    </Link>
+                 <Link href="/">
+                 <Button variant="ghost">                
+                   
+                        <a>
+                            <Logo />
+                        </a>
+                  
                 </Button>
+                </Link>
                 <MenuToggle toggle={toggle} isOpen={isOpen} />
                 <Box display={{ base: 'none', md: 'flex' }} flexBasis={{ base: '100%', md: 'auto' }}>
                     <Stack
