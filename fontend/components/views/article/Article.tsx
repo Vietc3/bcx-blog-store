@@ -1,5 +1,5 @@
 
-import { Box, Heading, Text, SimpleGrid,chakra } from '@chakra-ui/react';
+import { Box, Heading, Text, SimpleGrid, chakra, Link } from '@chakra-ui/react';
 import styles from '../../../constants/styles';
 import Image from '../../Image';
 import NewsletterForm from '../../NewsletterForm';
@@ -8,9 +8,17 @@ import SocialCard from '../../cards/SocialCard';
 import ProductCart from '../../cards/ProductCart';
 import { URL_BASE } from '../../../constants'
 import useColorTheme from '../../../hooks/useColorTheme';
+import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
+import DisqusComments from '../../disqus/disqusComment'
+
 type Props = {
     article: any;
+}
+const MyParagraph = ({ children, ...props }: any) => {
+    return(
+            <Link {...props}>{children}</Link>
+    );
 }
 const Article = ({ article }: Props) => {
     const getUrlImage = (image: string) => {
@@ -35,7 +43,26 @@ const Article = ({ article }: Props) => {
                         <Heading marginY="1.4rem" color={article.secondary}>
                             {_.upperFirst(article?.title)}
                         </Heading>
-                        <Text  data-aos="fade-up">{article?.description}</Text>
+
+                        <Markdown options={{
+                            overrides: {
+                                a: {
+                                    component: MyParagraph,
+                                    props: {
+                                        color: 'blue',
+                                    },
+                                },
+                                img: {
+                                    component: MyParagraph,
+                                    props: {
+                                        color: 'blue',
+                                    }
+                                }
+                        
+                            },
+                        }}>
+                            {article?.description}
+                        </Markdown>
                     </Box>
                 </Box>
                 <Box as="section" flex="1" flexDirection="column" marginTop={'2rem'}>
@@ -51,12 +78,15 @@ const Article = ({ article }: Props) => {
                     <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
                 </Box>
             </Box>
+            <DisqusComments post={article} />
+
+
             <Box as="section">
                 <chakra.h1
-                fontWeight="bold"
-                fontSize="3xl"
-                textTransform="uppercase"
-                marginX="1.4rem" marginTop="2rem" color={colors.primary}>
+                    fontWeight="bold"
+                    fontSize="3xl"
+                    textTransform="uppercase"
+                    marginX="1.4rem" marginTop="2rem" color={colors.primary}>
                     Browse More News
                 </chakra.h1>
                 {/* <Box d="flex" flexDirection="row" flex="4" as="section" margin={'.3rem'}>
@@ -74,10 +104,10 @@ const Article = ({ article }: Props) => {
                     {article.relation_products?.map((product: any) => {
                         return (
                             <Box key={product.id} >
-                                 <ProductCart
-                                product={product}
-                            />
-                            </Box>                           
+                                <ProductCart
+                                    product={product}
+                                />
+                            </Box>
                         );
                     })}
 
