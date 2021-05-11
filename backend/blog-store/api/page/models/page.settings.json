@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "Page",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "components": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string"
+    },
+    "features": {
+      "via": "page",
+      "collection": "feature"
+    },
+    "carousels": {
+      "collection": "carousel",
+      "via": "page"
+    }
+  }
+}
