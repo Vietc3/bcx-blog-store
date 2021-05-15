@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "components": {
-      "type": "json"
-    },
     "name": {
       "type": "string"
     },
@@ -25,6 +22,9 @@
     "carousels": {
       "collection": "carousel",
       "via": "page"
+    },
+    "components": {
+      "type": "json"
     }
   }
 }
