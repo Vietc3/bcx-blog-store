@@ -11,6 +11,7 @@ import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
 import DisqusComments from '../../disqus/disqusComment'
+import AdsBanner from '../../googleAds/adsBanner'
 
 type Props = {
     article: any;
@@ -78,6 +79,7 @@ const Article = ({ article }: Props) => {
                     <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
                 </Box>
             </Box>
+            <AdsBanner/>
             <DisqusComments post={article} />
 
 

@@ -15,6 +15,7 @@ const Layout: React.FC<Props> = ({ children, title = 'Modern News', ...props }) 
             <title>{title}</title>
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </Head>
         <Box>
             <header>
