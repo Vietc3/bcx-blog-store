@@ -94,12 +94,12 @@ const TrendingCard = ({
                         &#10095;
                     </Text>
 
-                    <HStack justify="center" pos="absolute" bottom="8px" w="full">
+                    <HStack pl="10px" justify="left" pos="absolute" bottom="8px" w="full">
                         {Array.from({ length: slidesCount }).map((_, slide) => (
                             <Box
                                 key={`dots-${slide}`}
                                 cursor="pointer"
-                                boxSize={["4px", "10px"]}
+                                boxSize={["4px", "20px"]}
                                 m="0 2px"
                                 bg={currentSlide === slide ? 'black' : "blackAlpha.400"}
                                 rounded="50%"

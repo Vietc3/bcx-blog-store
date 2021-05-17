@@ -26,33 +26,15 @@ const LastestCard = ({
                 
                 <Box d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
                     {articles.map((post:any) => {
-                            return <PostLastestCard data-aos="fade-right" post={post} key={post.id} />;
+                            return <PostLastestCard  post={post} key={post.id} />;
                         })}
                     <Button w="100%" variant="ghost">
                         Load More
                     </Button>
                 </Box>
-                <Box flex="2" flexDirection="column" as="section" marginBottom={'10px'} color={colors.primary} marginX="1rem">
-                    <Box>
-                        <Text color="primary" textAlign="center"   marginY={'.7em'} fontWeight="bold">
-                            Most Reading Today
-                        </Text>
-                        {articles.map((post:any) => {
-                            return (
-                                <PostLastestCard
-                                    data-aos="fade-left"
-                                    column
-                                    post={post}
-                                    key={post.id+'MOST READING'}
-                                    titleFontSize={'1em'}
-                                />
-                            );
-                        })}
-                    </Box>
-                    <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
-                    <SocialCard title="Follow Us" facebook twitter linkedin youtube instagram onClick={() => { }} />
-                </Box>
+        
             </Box>
+            <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
 
         </>
     );
