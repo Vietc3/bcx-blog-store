@@ -1,23 +1,32 @@
 import React from "react";
-import { chakra, Box, Flex, useColorModeValue, FlexProps } from "@chakra-ui/react";
+import { chakra, HStack, Box, Flex, useColorModeValue, FlexProps, Icon, Center, Spacer } from "@chakra-ui/react";
 import Image from '../Image';
 import { useRouter } from 'next/router';
+import { BsCalendar, BsPencil } from "react-icons/bs";
+import { MdPlayCircleOutline } from "react-icons/md";
+import moment from 'moment';
+
 
 interface Props extends FlexProps {
   imgSrc: string;
   alt: string;
   title: string;
-  idArticle:string;
+  idArticle: string;
+  article: any
 }
 
-const PostCard = ({idArticle,
+const PostCard = ({ idArticle,
   title,
-  imgSrc}:Props) => {
+  imgSrc, article }: Props) => {
 
-    const router = useRouter();
-    const onClick = () => {
-      router.push(`/articles/${idArticle}`);
+  const router = useRouter();
+  const onClick = () => {
+    router.push(`/articles/${idArticle}`);
   };
+
+  const formatDatePublic = (datePublic: any) => {
+    return moment(datePublic).format("Do MMM YY");
+  }
 
   return (
     <Flex
@@ -26,7 +35,7 @@ const PostCard = ({idArticle,
       w="100%"
       h="100%"
       alignItems="center"
-      justifyContent="center"   
+      justifyContent="center"
     >
       <Box
         bg={useColorModeValue("white", "gray.800")}
@@ -35,42 +44,60 @@ const PostCard = ({idArticle,
         // shadow={{ lg: "lg" }}
         rounded={{ lg: "lg" }}
         w="full"
-        h="100%"
+
       >
-        <Box w={{ lg: "50%" }} >
-        <Image
-                objectFit="cover"
-                h="100%"
-                src={imgSrc}
-                
-            />
+        <Box w={{ lg: "100%" }} >
+          <Image
+            objectFit="cover"
+            src={imgSrc}
+            maxHeight={'640px'}
+            minHeight={'360px'}
+            w="100%"
+          />
         </Box>
-
-        <Box py={12} px={6} maxW={{ base: "xl", lg: "5xl" }} w={{ lg: "50%" }}>
-          <chakra.h2
-            fontSize={{ base: "2xl", md: "3xl" }}
-            color={useColorModeValue("gray.800", "white")}
-            fontWeight="bold"
-          >
-            {title}
-          </chakra.h2>
-          <chakra.p mt={4} color={useColorModeValue("gray.600", "gray.400")}>
+        <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
+          <Box py={20} px={6} maxW={{ base: "xl", lg: "5xl" }} textAlign="center" w={{ lg: "80%" }}>
+            <chakra.h1
+              fontSize={{ base: "2xl", md: "3xl" }}
+              color="white"
+              fontWeight="bold"
+            >
+              {title}
+            </chakra.h1>
+            {/* <chakra.p mt={4} c color="white">
          {title}
-          </chakra.p>
-
-          <Box mt={8}
-          as='button' 
-              bg="gray.900"
-              color="gray.100"
-              px={5}
-              py={3}
-              fontWeight="semibold"
-              rounded="lg"
-              _hover={{ bg: "gray.800" }}
-              onClick={() => onClick()}>
-              Read Now
+          </chakra.p> */}
+            <Box textAlign="center" alignItems="center" px={6} py={3}>
+              <Center>
+                <Flex>
+                  <Icon as={BsCalendar} h={6} w={6} color="white" />
+                  <chakra.h2 mx={3} color="white" fontWeight="bold" fontSize="lg">
+                    {formatDatePublic(article.public_date)}
+                  </chakra.h2>
+                </Flex>
+                <Flex>
+                  <Icon as={BsPencil} h={6} w={6} color="white" />
+                  <chakra.h2 mx={3} color="white" fontWeight="bold" fontSize="lg">
+                    {article.author}
+                  </chakra.h2>
+                </Flex>
+              </Center>
+            </Box>
           </Box>
-        </Box>
+
+        </HStack>
+        {
+          article.youtube_url ? <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
+            <Spacer />
+            <Box>
+              <Icon mr="10px" as={MdPlayCircleOutline} h="40px" w="40px" color="white" />
+            </Box>
+          </HStack> 
+          : null
+        }
+
+
+
       </Box>
     </Flex>
   );

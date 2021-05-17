@@ -19,12 +19,10 @@ const LastestCard = ({
     const colors = useColorTheme();
     return (
         <>
-            <Heading marginX=".1em" marginTop="1em" fontSize={'1.6em'} color={colors.primary}  fontWeight="300">
-                Latest News
-            </Heading>
             <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}>
                 
-                <Box d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
+                <Box     pl={{ base: '0px', lg:"30px" }}
+            pr={{ base: '0px', lg:"30px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
                     {articles.map((post:any) => {
                             return <PostLastestCard  post={post} key={post.id} />;
                         })}

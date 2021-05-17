@@ -49,6 +49,9 @@
     },
     "views": {
       "type": "biginteger"
+    },
+    "youtube_url": {
+      "type": "string"
     }
   }
 }

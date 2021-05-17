@@ -79,7 +79,7 @@ const Article = ({ article }: Props) => {
                     <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
                 </Box>
             </Box>
-            <AdsBanner/>
+            {/* <AdsBanner/> */}
             <DisqusComments post={article} />
 
 
@@ -112,7 +112,6 @@ const Article = ({ article }: Props) => {
                             </Box>
                         );
                     })}
-
                 </SimpleGrid>
             </Box>
         </>

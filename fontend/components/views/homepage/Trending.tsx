@@ -46,14 +46,15 @@ const TrendingCard = ({
                 data-aos="zoom-in"
             >
                 <Flex w="full" pos="relative" overflow="hidden" >
-                    <Flex w="full" h="600px" {...carouselStyle}>
+                    <Flex w="full" {...carouselStyle}>
                         {
                             slides.map((slide: any) => (
                                 <Box key={slide.id} h="100%" w="full" boxSize="full" shadow="md" flex="none" >
                                     <PostCard
+                                    article={slide}
                                         idArticle={slide.id}
                                         title={slide.title}
-                                        imgSrc={getUrlImage(slide ? slide.image_cover[0].formats.small.url : null)}
+                                        imgSrc={getUrlImage(slide ? slide.image_cover[0].url : null)}
                                         alt={`Picture of ${slide.title}`}
                                     />
                                 </Box>
@@ -101,7 +102,7 @@ const TrendingCard = ({
                                 cursor="pointer"
                                 boxSize={["4px", "20px"]}
                                 m="0 2px"
-                                bg={currentSlide === slide ? 'black' : "blackAlpha.400"}
+                                bg={currentSlide === slide ? 'white' : "blackAlpha.400"}
                                 rounded="50%"
                                 display="inline-block"
                                 transition="background-color 0.6s ease"
