@@ -52,7 +52,7 @@ const PostLastestCard = ({
     return (
         <Card
             onClick={() => onClick()}
-            p={4}
+            p={0}
             justifyContent="flex-start"
             cursor="pointer"
             onMouseEnter={() => setHover(true)}
@@ -64,18 +64,17 @@ const PostLastestCard = ({
             display="flex"
             {...props}
             flexDirection={flexDirection}
-
         >
             <Box
-                width={{ base: '50%', lg: column ? '100%' : 80 }}
+                width={{ base: '50%', lg:  '100%'  }}
             >
                 <Image
-                    width={{ base: '100%', lg: column ? '100%' : 60 }}
+                    width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: column ? '100%' : '100%' }}
                     src={getUrlImage(post.image_cover[0].url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
-                    borderRadius={styles.borderRadius}
+                   
                 ></Image>
                 {post.youtube_url ? <HStack pl="10px" justify="left" pos="absolute" bottom="20px" width={{ base: '100%', lg: column ? '100%' : 60 }}>
                     <Icon mr="10px" as={MdPlayCircleOutline} h={7} w={7} color="white" />

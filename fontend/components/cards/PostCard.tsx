@@ -87,7 +87,7 @@ const PostCard = ({ idArticle,
 
         </HStack>
         {
-          article.youtube_url ? <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
+          article.youtube_url ? <HStack pl="10px" justify="center" pos="absolute" bottom="20px" w="full">
             <Spacer />
             <Box>
               <Icon mr="10px" as={MdPlayCircleOutline} h="40px" w="40px" color="white" />
