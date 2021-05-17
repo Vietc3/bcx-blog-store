@@ -67,10 +67,11 @@ const PostLastestCard = ({
         >
             <Box
                 width={{ base: '50%', lg:  '100%'  }}
+                height={{ base: "100%", lg: '300px' }}
             >
                 <Image
                     width={{ base: '100%', lg:  '100%' }}
-                    height={{ base: "100%", lg: column ? '100%' : '100%' }}
+                    height={{ base: "100%", lg: '100%' }}
                     src={getUrlImage(post.image_cover[0].url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"

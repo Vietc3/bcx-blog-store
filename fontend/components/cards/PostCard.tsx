@@ -95,9 +95,6 @@ const PostCard = ({ idArticle,
           </HStack> 
           : null
         }
-
-
-
       </Box>
     </Flex>
   );
