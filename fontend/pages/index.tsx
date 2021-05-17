@@ -13,7 +13,7 @@ type Props = {
 const IndexPage = ({ articles }: Props) => {
     return (<>
             <TrendingCard articles={articles}/>
-            <LastestCard articles={articles}/>
+            <LastestCard  articles={articles}/>
             </>
     );
 };

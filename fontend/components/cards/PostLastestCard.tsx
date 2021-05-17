@@ -86,10 +86,15 @@ const PostLastestCard = ({
 
 
             <Box mt={{ base: 1, md: 2 }} ml={{ base: 5, md: 6 }}>
-                <Tag size="lg" bgColor="red" borderRadius="full">
-                    <TagLabel color="white">{post.topic}</TagLabel>
-                </Tag>
-                <Flex textAlign="center" alignItems="center" py={3}>
+                {
+                    post.categories? post.categories.map((catelogry:any)=>(
+                        <Tag size="lg" bgColor="red" borderRadius="full">
+                        <TagLabel color="white">{catelogry.name}</TagLabel>
+                    </Tag>
+                    )) : null
+                }
+               
+                <Flex textAlign="center" alignItems="center" py={3} display={{base:"none",lg:"flex"}}>
                     <Flex>
                         <Icon as={BsCalendar} h={4} w={4} color="black" />
                         <chakra.h2 mx={3} color="gray" fontWeight="bold" fontSize="md">
@@ -105,16 +110,8 @@ const PostLastestCard = ({
 
                 </Flex>
                 <Text
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    fontSize="sm"
-                    letterSpacing="wide"
-                    color={colors.primary}
-                >
-                    {post.title}
-                </Text>
-                <Text
                     mt={1}
+                    mb={2}
                     display="block"
                     fontSize="lg"
                     lineHeight="normal"
@@ -124,6 +121,21 @@ const PostLastestCard = ({
                 >
                     {_.upperFirst(post.title)}
                 </Text>
+               
+                    <Flex display={{base:"flex",lg:"none"}}>
+                        <Icon as={BsCalendar} h={4} w={4} color="black" />
+                        <chakra.h2 mx={3} color="gray" fontWeight="bold" fontSize="md">
+                            {formatDatePublic(post.public_date)}
+                        </chakra.h2>
+                    </Flex>
+                    
+                    <Flex display={{base:"flex",lg:"none"}}>
+                        <Icon as={BsPencil} h={4} w={4} color="black" />
+                        <chakra.h2 mx={3} color="gray" fontWeight="bold" fontSize="md">
+                            {post.author}
+                        </chakra.h2>
+                    </Flex>
+                
                 <Text mt={2} color="gray.500" display={{base:'none', lg:'flex'}}>
                     {post.description.substr(0, 200)}
                     {post.description.length > 200 ? '...' : ''}

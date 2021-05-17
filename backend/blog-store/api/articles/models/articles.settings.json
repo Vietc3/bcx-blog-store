@@ -39,7 +39,8 @@
     },
     "relation_products": {
       "via": "relation_articles",
-      "collection": "product"
+      "collection": "product",
+      "dominant": true
     },
     "author": {
       "type": "string"
@@ -52,6 +53,11 @@
     },
     "youtube_url": {
       "type": "string"
+    },
+    "categories": {
+      "collection": "categories",
+      "via": "articles",
+      "dominant": true
     }
   }
 }
