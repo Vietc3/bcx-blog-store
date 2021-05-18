@@ -114,10 +114,16 @@ const Article = ({ article }: Props) => {
                 </Box>
             </Box>
             {/* <AdsBanner/> */}
-            <DisqusComments post={article} />
+            <Box
+            pl={{ base: '0px', lg: "80px" }}
+            pr={{ base: '0px', lg: "80px" }}>
+                 <DisqusComments post={article} />
+            </Box>
+           
 
 
-            <Box as="section">
+            <Box as="section"  pl={{ base: '0px', lg: "80px" }}
+            pr={{ base: '0px', lg: "80px" }}>
                 <chakra.h1
                     fontWeight="bold"
                     fontSize="2xl"
