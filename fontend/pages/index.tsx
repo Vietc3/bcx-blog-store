@@ -2,18 +2,19 @@ import React from 'react';
 import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
 import { GetStaticProps } from 'next';
-import {useGetArticles} from '../helpers/articles';
+import {useGetArticles,useGetFeatered} from '../helpers/articles';
 
 
 type Props = {
+    featured?:any;
     articles?: any;
     errors?: string;
 };
 
-const IndexPage = ({ articles }: Props) => {
+const IndexPage = ({ articles,featured }: Props) => {
     return (<>
-            <TrendingCard articles={articles}/>
-            <LastestCard  articles={articles}/>
+            <TrendingCard articles={featured}/>
+            <LastestCard articles={articles}/>
             </>
     );
 };
@@ -21,7 +22,9 @@ const IndexPage = ({ articles }: Props) => {
 export const getStaticProps: GetStaticProps =  async (context:any)=> {
     try {
         let data  = await useGetArticles();
-        return { props: { articles: data,  revalidate: 10 } };
+        let dataFeatured  = await useGetFeatered();
+
+        return { props: { articles: data, featured:dataFeatured,  revalidate: 10 } };
     } catch (err) {
         return { props: { errors: err.message } };
     }

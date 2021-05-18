@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, BoxProps, Text, useBreakpointValue, HStack, Tag, Icon, TagLabel, Flex, chakra } from '@chakra-ui/react';
 import useColorTheme from '../../hooks/useColorTheme';
-import styles from '../../constants/styles';
 import Image from '../Image';
 import { URL_BASE } from '../../constants';
 import Card from './Card';
@@ -10,7 +9,8 @@ import { useRouter } from 'next/router';
 import { MdPlayCircleOutline } from "react-icons/md";
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import moment from 'moment';
-
+import {getTags} from '../../helpers/commonFuction';
+import { AiFillPlayCircle } from "react-icons/ai";
 interface Props extends BoxProps {
     post: any;
     column?: boolean;
@@ -48,6 +48,7 @@ const PostLastestCard = ({
         return moment(datePublic).format("Do MMM YY");
     }
 
+    const tags = getTags(post.tags)
 
     return (
         <Card
@@ -67,29 +68,31 @@ const PostLastestCard = ({
         >
             <Box
                 width={{ base: '50%', lg:  '100%'  }}
-                height={{ base: "100%", lg: '300px' }}
+                height={{ base: "180px", lg: '300px' }}
             >
                 <Image
                     width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
-                    src={getUrlImage(post.image_cover[0].url)}
+                    src={getUrlImage(post.hero_desktop.url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
                    
                 ></Image>
+
+
                 {post.youtube_url ? <HStack pl="10px" justify="left" pos="absolute" bottom="20px" width={{ base: '100%', lg: column ? '100%' : 60 }}>
-                    <Icon mr="10px" as={MdPlayCircleOutline} h={7} w={7} color="white" />
+                    <Icon mr="10px" as={AiFillPlayCircle} h='50px' w='50px' color="white" />
                 </HStack> : null}
 
             </Box>
 
 
 
-            <Box mt={{ base: 1, md: 2 }} ml={{ base: 5, md: 6 }}>
+            <Box w="100%" mt={{ base: 1, md: 2 }} ml={{ base: 5, md: 6 }}>
                 {
-                    post.categories ? post.categories.map((catelogry: any) => (
-                        <Tag mr={1} size="lg" bgColor="red" borderRadius="full">
-                            <TagLabel color="white">{catelogry.name}</TagLabel>
+                    tags ? tags.map((tag: any) => (
+                        <Tag key={tag} mr={1} size="lg" bgColor="red" borderRadius="full">
+                            <TagLabel color="white">{tag}</TagLabel>
                         </Tag>
                     )) : null
                 }
@@ -136,9 +139,9 @@ const PostLastestCard = ({
                     </chakra.h2>
                 </Flex>
 
-                <Text mt={2} color="gray.500" display={{ base: 'none', lg: 'flex' }}>
-                    {post.description.substr(0, 200)}
-                    {post.description.length > 200 ? '...' : ''}
+                <Text mt={10} color="gray.500" display={{ base: 'none', lg: 'flex' }}>
+                    {post.summary.substr(0, 200)}
+                    {post.summary.length > 200 ? '...' : ''}
                 </Text>
             </Box>
         </Card>

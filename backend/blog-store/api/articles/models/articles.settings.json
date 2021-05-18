@@ -15,11 +15,29 @@
     "title": {
       "type": "string"
     },
-    "description": {
+    "summary": {
+      "type": "text"
+    },
+    "body": {
       "type": "richtext"
     },
-    "image_cover": {
-      "collection": "file",
+    "author": {
+      "type": "string"
+    },
+    "hero_desktop": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "hero_mobile": {
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images",
@@ -33,31 +51,17 @@
     "public_date": {
       "type": "date"
     },
-    "main_product": {
-      "via": "main_article",
-      "model": "product"
-    },
-    "relation_products": {
-      "via": "relation_articles",
-      "collection": "product",
-      "dominant": true
-    },
-    "author": {
-      "type": "string"
-    },
-    "topic": {
-      "type": "string"
-    },
-    "views": {
-      "type": "biginteger"
-    },
     "youtube_url": {
       "type": "string"
     },
-    "categories": {
-      "collection": "categories",
-      "via": "articles",
-      "dominant": true
+    "featured": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "text"
+    },
+    "products_relative": {
+      "type": "text"
     }
   }
 }

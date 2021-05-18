@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Flex, Text, HStack } from '@chakra-ui/react';
-import { URL_BASE } from '../../../constants';
 import PostCard from '../../cards/PostCard';
+
 
 type Props = {
     margin?: number;
@@ -12,9 +12,7 @@ const TrendingCard = ({
     articles,
 }: Props) => {
 
-    const getUrlImage = (image: string) => {
-        return URL_BASE + image
-    }
+  
     const slides = articles;
 
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,10 +49,8 @@ const TrendingCard = ({
                             slides.map((slide: any) => (
                                 <Box key={slide.id} h="100%" w="full" boxSize="full" shadow="md" flex="none" >
                                     <PostCard
-                                    article={slide}
+                                        article={slide}
                                         idArticle={slide.id}
-                                        title={slide.title}
-                                        imgSrc={getUrlImage(slide ? slide.image_cover[0].url : null)}
                                         alt={`Picture of ${slide.title}`}
                                     />
                                 </Box>

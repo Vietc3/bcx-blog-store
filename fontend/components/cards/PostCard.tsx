@@ -4,20 +4,19 @@ import Image from '../Image';
 import { useRouter } from 'next/router';
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import { MdPlayCircleOutline } from "react-icons/md";
+import { AiFillPlayCircle } from "react-icons/ai";
+
 import moment from 'moment';
+import {getUrlImage} from '../../helpers/commonFuction';
 
 
 interface Props extends FlexProps {
-  imgSrc: string;
   alt: string;
-  title: string;
   idArticle: string;
   article: any
 }
 
-const PostCard = ({ idArticle,
-  title,
-  imgSrc, article }: Props) => {
+const PostCard = ({ idArticle, article }: Props) => {
 
   const router = useRouter();
   const onClick = () => {
@@ -46,15 +45,28 @@ const PostCard = ({ idArticle,
         w="full"
 
       >
-        <Box w={{ lg: "100%" }} >
+        <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}>
           <Image
             objectFit="cover"
-            src={imgSrc}
+            src={getUrlImage(article.hero_desktop.url)}
             maxHeight={'640px'}
             minHeight={'360px'}
             w="100%"
           />
         </Box>
+
+        <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
+          <Image
+            objectFit="cover"
+            src={getUrlImage(article.hero_mobile.url)}
+            maxHeight={'640px'}
+            minHeight={'360px'}
+            w="100%"
+          />
+        </Box>
+
+
+
         <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
           <Box py={20} px={6} maxW={{ base: "xl", lg: "5xl" }} textAlign="center" w={{ lg: "80%" }}>
             <chakra.h1
@@ -62,7 +74,7 @@ const PostCard = ({ idArticle,
               color="white"
               fontWeight="bold"
             >
-              {title}
+              {article.title}
             </chakra.h1>
             {/* <chakra.p mt={4} c color="white">
          {title}
@@ -90,7 +102,7 @@ const PostCard = ({ idArticle,
           article.youtube_url ? <HStack pl="10px" justify="center" pos="absolute" bottom="20px" w="full">
             <Spacer />
             <Box>
-              <Icon mr="10px" as={MdPlayCircleOutline} h="40px" w="40px" color="white" />
+              <Icon mr="10px" as={AiFillPlayCircle} h="60px" w="60px" color="white" />
             </Box>
           </HStack> 
           : null
