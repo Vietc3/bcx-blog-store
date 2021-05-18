@@ -22,12 +22,15 @@ const MyParagraph = ({ children, ...props }: any) => {
 
 const MyIMG = ({ children, ...props }: any) => {    
     return (
-        <Image 
-      
+        <Box >
+       
+             <Image 
         width={{ base: '100%', lg:  '50%' }}
         float="right"
         height={{ base: "100%", lg: '100%' }} src={props.src}>{children}</Image>
-    );
+ 
+        </Box>
+          );
 }
 const Article = ({ article }: Props) => {
 
