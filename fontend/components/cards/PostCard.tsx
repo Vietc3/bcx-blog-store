@@ -3,11 +3,8 @@ import { chakra, HStack, Box, Flex, useColorModeValue, FlexProps, Icon, Center, 
 import Image from '../Image';
 import { useRouter } from 'next/router';
 import { BsCalendar, BsPencil } from "react-icons/bs";
-import { MdPlayCircleOutline } from "react-icons/md";
 import { AiFillPlayCircle } from "react-icons/ai";
-
-import moment from 'moment';
-import {getUrlImage} from '../../helpers/commonFuction';
+import {getUrlImage,formatDatePublic} from '../../helpers/commonFuction';
 
 
 interface Props extends FlexProps {
@@ -23,9 +20,7 @@ const PostCard = ({ idArticle, article }: Props) => {
     router.push(`/articles/${idArticle}`);
   };
 
-  const formatDatePublic = (datePublic: any) => {
-    return moment(datePublic).format("Do MMM YY");
-  }
+
 
   return (
     <Flex

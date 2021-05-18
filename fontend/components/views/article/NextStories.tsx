@@ -1,6 +1,8 @@
 import React from "react";
-import { Box} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import useColorTheme from '../../../hooks/useColorTheme';
 import PostLastestCard from '../../cards/PostLastestCard';
+
 
 type Props = {
     margin?: number;
@@ -8,7 +10,7 @@ type Props = {
     articles: any;
 }
 
-const LastestCard = ({
+const NextStories = ({
     articles,
 }: Props) => {
     return (
@@ -22,10 +24,10 @@ const LastestCard = ({
                         </Box>
                     ))}
                 </Box>
+
             </Box>
         </>
     );
 };
 
-export default LastestCard;
-
+export default NextStories;

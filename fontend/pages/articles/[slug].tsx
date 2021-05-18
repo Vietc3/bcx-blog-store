@@ -1,18 +1,22 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Article from '../../components/views/article/Article'
 import { Post } from '../../interfaces';
-import { useGetAllArticles,useGetArticleById } from '../../helpers/articles';
+import { useGetAllArticles,useGetArticleById,useGetArticles } from '../../helpers/articles';
+import NextStories from '../../components/views/article/NextStories'
+
 
 type Props = {
     article?: any;
+    articlesNextStories?: any;
     morePosts?: Post[];
     errors?: string;
 };
 
-const PostDetail = ({ article}: Props) => {
+const PostDetail = ({ article, articlesNextStories}: Props) => {
     return (
         <>
       <Article article={article}/>
+      <NextStories articles={articlesNextStories}/>
       </>
     );
 };
@@ -35,7 +39,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const slug = params?.slug;
         let data = await useGetArticleById(slug);
-        return { props: { article: data }, revalidate: 10 };
+        let dataNextStories  = await useGetArticles('featured=false&_sort=public_date:DESC&_limit=2');
+        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 10 };
     } catch (err) {
         return { props: { errors: err.message } };
     }
