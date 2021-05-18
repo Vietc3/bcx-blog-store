@@ -1,6 +1,5 @@
 import {
     Box,
-    chakra,
     Flex,
     Text,
     IconButton,
@@ -18,12 +17,13 @@ import {
     useBreakpointValue,
     useDisclosure,
     Spacer,
+    Button
 } from '@chakra-ui/react';
 import {
     HamburgerIcon,
     CloseIcon,
     ChevronDownIcon,
-    ChevronRightIcon,
+
 } from '@chakra-ui/icons';
 import {
     AiOutlineSearch,
@@ -74,12 +74,18 @@ export default function WithSubnavigation() {
 
                 <Flex display={{ base: 'none', md: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
                     <Spacer></Spacer>
-                    <InputGroup  w="50%">
+                    <InputGroup w="50%">
                         <InputRightElement
-                            pointerEvents="none"
-                            children={<AiOutlineSearch />}
-                        />
-                        <Input borderRadius={25} type="tel" placeholder="Search Keyword" />
+                            w="15%"
+                            borderRadius={30}
+                            bgColor="black"
+                        >
+                            <Button
+                                zIndex="15"
+                                leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
+                            </Button>
+                        </InputRightElement>
+                        <Input bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Search Keyword" />
                     </InputGroup>
                 </Flex>
 
@@ -95,6 +101,12 @@ export default function WithSubnavigation() {
                             pointerEvents="none"
                             children={<AiOutlineSearch />}
                         />
+                        <Button
+                            zIndex="15"
+                            p={2}
+                            leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
+
+                        </Button>
                         <Input type="tel" placeholder="Search " />
                     </InputGroup>
                 </Stack>
@@ -160,13 +172,13 @@ const DesktopSubNav = ({ label, href }: NavItem) => {
             fontFamily={'heading'}
             // rounded={'md'}
             _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-                <Text
-                        textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                        fontWeight="bold"
-                        color={useColorModeValue('gray.800', 'white')}>
-                       {label}
-                    </Text>
-          
+            <Text
+                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+                fontWeight="bold"
+                color={useColorModeValue('gray.800', 'white')}>
+                {label}
+            </Text>
+
         </Link>
     );
 };

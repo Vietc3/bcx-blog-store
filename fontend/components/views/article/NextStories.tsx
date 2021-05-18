@@ -1,8 +1,6 @@
 import React from "react";
 import { Box } from '@chakra-ui/react';
-import useColorTheme from '../../../hooks/useColorTheme';
 import PostLastestCard from '../../cards/PostLastestCard';
-
 
 type Props = {
     margin?: number;

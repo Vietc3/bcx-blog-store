@@ -1,6 +1,5 @@
 
-import { Box, Heading, Center, Flex, Icon, Tag, TagLabel, chakra, Link } from '@chakra-ui/react';
-
+import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center } from '@chakra-ui/react';
 import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
@@ -8,6 +7,9 @@ import DisqusComments from '../../disqus/disqusComment'
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import YoutubeEmbed from '../../youtube/youtube'
 import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonFuction';
+import { URL_BASE } from '../../../constants';
+import Image from '../../Image';
+
 
 type Props = {
     article: any;
@@ -17,11 +19,26 @@ const MyParagraph = ({ children, ...props }: any) => {
         <Link {...props}>{children}</Link>
     );
 }
+
+const MyIMG = ({ children, ...props }: any) => {
+    console.log(props);
+    
+    return (
+        <Image 
+      
+        width={{ base: '100%', lg:  '50%' }}
+        float="right"
+        height={{ base: "100%", lg: '100%' }} src={props.src}>{children}</Image>
+    );
+}
 const Article = ({ article }: Props) => {
 
     const tags = getTags(article.tags)
     const colors = useColorTheme();
-    const urlImage = getUrlImage(article.hero_desktop.url)
+    const urlImage = getUrlImage(article.hero_desktop.url);
+    const urlImageMarkdown = () =>{
+        return article.body.split('/uploads/').join(`${URL_BASE}/uploads/` );
+    }
     return (
         <>
             <Box as="section">
@@ -34,18 +51,18 @@ const Article = ({ article }: Props) => {
                     display="flex"
                     justifyContent="flex-end"
                     flexDirection="column"
-                    h="650px"
+                    h={{ base: '350px', lg: "660px" }}
                     pl={{ base: '0px', lg: "80px" }}
                     pr={{ base: '0px', lg: "80px" }}
                 >
                     <Box
                         as="main"
                         bottom="0px"
-                        opacity={0.6}
+                        style={{background: "rgba(255,255,255,0.7)"}}
                         bg="white"
                         py={10} px={15} pl={10} textAlign="left" w={{ base: "100%", lg: "100%" }}
                         >
-                        <Box>
+                        <Box display={{base:"none",md:"flex",lg:"flex"}}>
                             {
                                 tags ? tags.map((tag: any) => (
                                     <Tag key={tag} mr={1}  opacity={1} size="lg" bgColor="red" borderRadius="full">
@@ -62,7 +79,7 @@ const Article = ({ article }: Props) => {
                         >
                             {article.title}
                         </chakra.h1>
-                        <Flex textAlign="center" alignItems="center" pt={5}>
+                        <Flex textAlign="center" alignItems="center" pt={5} display={{base:"none",lg:"flex"}}>
                             <Flex>
                                 <Icon as={BsCalendar} h={6} w={6} color="black" />
                                 <chakra.h2 mx={3} color="black" fontWeight="bold" fontSize="lg">
@@ -76,6 +93,21 @@ const Article = ({ article }: Props) => {
                                 </chakra.h2>
                             </Flex>
                         </Flex>
+
+                        <Center textAlign="center" alignItems="center" pt={5} display={{base:"flex",lg:"none"}}>
+                            <Flex>
+                                <Icon as={BsCalendar} h={6} w={6} color="black" />
+                                <chakra.h2 mx={3} color="black" fontWeight="bold" fontSize="lg">
+                                    {formatDatePublic(article.public_date)}
+                                </chakra.h2>
+                            </Flex>
+                            <Flex>
+                                <Icon as={BsPencil} h={6} w={6} color="black" />
+                                <chakra.h2 mx={3} color="black" fontWeight="bold" fontSize="lg">
+                                    {article.author}
+                                </chakra.h2>
+                            </Flex>
+                        </Center>
                     </Box>
                 </Box>
             </Box>
@@ -100,15 +132,11 @@ const Article = ({ article }: Props) => {
                                     },
                                 },
                                 img: {
-                                    component: MyParagraph,
-                                    props: {
-                                        color: 'blue',
-                                    }
-                                }
-
+                                    component: MyIMG,
+                                },
                             },
                         }}>
-                            {article?.body}
+                            {urlImageMarkdown()}
                         </Markdown>
                     </Box>
                 </Box>
