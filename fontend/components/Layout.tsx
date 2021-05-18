@@ -21,7 +21,7 @@ const Layout: React.FC<Props> = ({ children, title = 'Modern News', ...props }) 
             <header>
                 <Navbar />
             </header>
-            <Box as="main" minH={'80vh'} maxW={styles.mainMaxWidth} marginX="auto" {...props}>
+            <Box as="main" minH={'80vh'} maxW={styles.mainMaxWidth} style={{paddingTop:'0px !important'}} marginX="auto" {...props}>
                 {children}
             </Box>
             <Footer />

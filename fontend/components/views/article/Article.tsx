@@ -20,9 +20,7 @@ const MyParagraph = ({ children, ...props }: any) => {
     );
 }
 
-const MyIMG = ({ children, ...props }: any) => {
-    console.log(props);
-    
+const MyIMG = ({ children, ...props }: any) => {    
     return (
         <Image 
       
