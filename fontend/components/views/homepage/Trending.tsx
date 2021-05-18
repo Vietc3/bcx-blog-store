@@ -43,8 +43,11 @@ const TrendingCard = ({
                 justifyContent="center"
                 data-aos="zoom-in"
             >
-                <Flex w="full" pos="relative" overflow="hidden" >
-                    <Flex w="full" {...carouselStyle}>
+                <Flex w="full" pos="relative" overflow="hidden" 
+               >
+                    <Flex w="full" {...carouselStyle}  _hover={{
+                    opacity: 0.8,
+                }}>
                         {
                             slides.map((slide: any) => (
                                 <Box key={slide.id} h="100%" w="full" boxSize="full" shadow="md" flex="none" >
