@@ -1,8 +1,9 @@
 import React from 'react';
 import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
+import SubcribeForm from '../components/forms/SubscribeForm';
 import { GetStaticProps } from 'next';
-import {useGetArticles,useGetFeatered} from '../helpers/articles';
+import {useGetArticles} from '../helpers/articles';
 
 
 type Props = {
@@ -15,14 +16,15 @@ const IndexPage = ({ articles,featured }: Props) => {
     return (<>
             <TrendingCard articles={featured}/>
             <LastestCard articles={articles}/>
+            <SubcribeForm onSubmitForm={() => { }} marginY="10px" />
             </>
     );
 };
 
 export const getStaticProps: GetStaticProps =  async (context:any)=> {
     try {
-        let data  = await useGetArticles();
-        let dataFeatured  = await useGetFeatered();
+        let data  = await useGetArticles('featured=false&_sort=public_date:DESC&_limit=4');
+        let dataFeatured  = await useGetArticles('featured=true');
 
         return { props: { articles: data, featured:dataFeatured,  revalidate: 10 } };
     } catch (err) {

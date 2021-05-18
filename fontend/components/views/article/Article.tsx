@@ -71,18 +71,6 @@ const Article = ({ article }: Props) => {
                             </Markdown>
                         </Box>
                     </Box>
-                    <Box as="section" flex="1" flexDirection="column" marginTop={'2rem'}>
-                        <AuthorCard
-                            author={{
-                                id: '1',
-                                name: article.author,
-                                avatar:
-                                    'https://images.unsplash.com/photo-1554384645-13eab165c24b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80',
-                            }}
-                        />
-                        <SocialCard title="Share The Post" facebook twitter linkedin onClick={() => { }} />
-                        <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
-                    </Box>
                 </Box>
                 {/* <AdsBanner/> */}
                 <DisqusComments post={article} />
@@ -91,11 +79,12 @@ const Article = ({ article }: Props) => {
                 <Box as="section">
                     <chakra.h1
                         fontWeight="bold"
-                        fontSize="3xl"
+                        fontSize="2xl"
                         textTransform="uppercase"
-                        marginX="1.4rem" marginTop="2rem" color={colors.primary}>
-                        Browse More News
+                        marginTop="0.5rem" >
+                       Next Stories
                 </chakra.h1>
+
                     {/* <Box d="flex" flexDirection="row" flex="4" as="section" margin={'.3rem'}>
                     {article.relation_products?.map((product:any) => {
                         return (

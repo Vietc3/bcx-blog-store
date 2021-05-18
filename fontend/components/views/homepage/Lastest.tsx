@@ -33,8 +33,6 @@ const LastestCard = ({
                 </Box>
 
             </Box>
-            <NewsletterForm onSubmitForm={() => { }} marginY="10px" />
-
         </>
     );
 };

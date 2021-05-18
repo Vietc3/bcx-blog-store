@@ -19,27 +19,16 @@ export const NAVBAR_LINKS = [
 
 export const FOOTER_LINKS = [
     {
-        heading: 'Discover',
+        heading: 'About Us',
         links: [
-            { href: '/', title: 'Home' },
-            { href: '/', title: 'Magazine' },
-            { href: '/', title: 'Sports' },
-            { href: '/', title: 'Economy' },
+            { href: '/', title: 'Company Profile' },
+            { href: '/', title: 'Tems Of Use' },
+            { href: '/', title: 'Privacy' },
         ],
     },
     {
-        heading: 'Company',
+        heading: 'Follow Us',
         links: [
-            { href: '/', title: 'About' },
-            { href: '/', title: 'Services' },
-            { href: '/', title: 'Blog' },
-            { href: '/', title: 'Career' },
-        ],
-    },
-    {
-        heading: 'Social',
-        links: [
-            { href: '/', title: 'LinkedIn' },
             { href: '/', title: 'Facebook' },
             { href: '/', title: 'Twitter' },
             { href: '/', title: 'Instagram' },

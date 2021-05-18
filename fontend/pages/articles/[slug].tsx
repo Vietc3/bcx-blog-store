@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Article from '../../components/views/article/Article'
 import { Post } from '../../interfaces';
-import { useGetArticles,useGetArticleById } from '../../helpers/articles';
+import { useGetAllArticles,useGetArticleById } from '../../helpers/articles';
 
 type Props = {
     article?: any;
@@ -20,7 +20,7 @@ const PostDetail = ({ article}: Props) => {
 export default PostDetail;
 
 export async function getStaticPaths() {
-    let data = await useGetArticles();
+    let data = await useGetAllArticles();
     const paths = data.map((article: any) => {
         return {
             params: {
