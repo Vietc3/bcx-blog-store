@@ -67,8 +67,8 @@ const PostLastestCard = ({
             flexDirection={flexDirection}
         >
             <Box
-                width={{ base: '50%', lg:  '100%'  }}
-                height={{ base: "180px", lg: '300px' }}
+                width={{ base: '70%', lg:  '100%'  }}
+                height={{ base: "150px",md:"180px", lg: '300px' }}
             >
                 <Image
                     width={{ base: '100%', lg:  '100%' }}

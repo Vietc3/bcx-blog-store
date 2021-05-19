@@ -17,7 +17,8 @@ import {
     useBreakpointValue,
     useDisclosure,
     Spacer,
-    Button
+    Button,
+    chakra
 } from '@chakra-ui/react';
 import {
     HamburgerIcon,
@@ -29,9 +30,28 @@ import {
     AiOutlineSearch,
 } from "react-icons/ai";
 import styles from '../../constants/styles';
+import { useFormik } from 'formik';
+import {useRecoilState} from 'recoil';
+import {SearchKeyword} from '../../recoil/search';
+import { useRouter } from 'next/router';
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
+
+    const [searchKeyword, setSearchKeyword] = useRecoilState(SearchKeyword);
+    const router = useRouter();
+    const onClick = () => {
+        router.push(`/search`);
+    };
+    const formik = useFormik({
+        initialValues: {
+            keyword: searchKeyword,
+        },
+        onSubmit: async values => {
+            setSearchKeyword(values.keyword);
+            onClick();
+        },
+    });
 
     return (
         <Box>
@@ -74,19 +94,26 @@ export default function WithSubnavigation() {
 
                 <Flex display={{ base: 'none', md: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
                     <Spacer></Spacer>
-                    <InputGroup w="50%">
-                        <InputRightElement
-                            w="15%"
-                            borderRadius={30}
-                            bgColor="black"
-                        >
-                            <Button
-                                zIndex="15"
-                                leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
-                            </Button>
-                        </InputRightElement>
-                        <Input bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Search Keyword" />
-                    </InputGroup>
+                    <chakra.form w="50%" onSubmit={formik.handleSubmit}>
+                        <InputGroup w="100%">
+                            <InputRightElement
+                                w="15%"
+                                borderRadius={30}
+                                bgColor="black"
+                            >
+                                <Button
+                                    type="submit"
+                                    zIndex="15"
+                                    leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
+                                </Button>
+                            </InputRightElement>
+                            <Input
+                                id="keyword"
+                                name="keyword"
+                                onChange={formik.handleChange}
+                                value={formik.values.keyword} bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Search Keyword" />
+                        </InputGroup>
+                    </chakra.form>
                 </Flex>
 
                 <Stack
@@ -102,12 +129,15 @@ export default function WithSubnavigation() {
                             children={<AiOutlineSearch />}
                         />
                         <Button
+                            type="submit"
                             zIndex="15"
                             p={2}
-                            leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
+                            leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid" />
+                        <Input
 
-                        </Button>
-                        <Input type="tel" placeholder="Search " />
+                            onChange={formik.handleChange}
+                            value={formik.values.keyword}
+                            type="tel" placeholder="Search " />
                     </InputGroup>
                 </Stack>
             </Flex>

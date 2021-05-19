@@ -18,21 +18,21 @@ import {
     FaPaperPlane,
 } from "react-icons/fa";
 import { useFormik } from 'formik';
-interface Props extends BoxProps {
-    onSubmitForm: any
-}
+import { toast } from "react-toastify";
 
-const SubcribeForm = ({ onSubmitForm, ...props }: Props) => {
+import {useUpdateSubcriber} from '../../helpers/subcribers';
+const SubcribeForm = ({...props }) => {
     const formik = useFormik({
         initialValues: {
             email:"",
         },
-        onSubmit: values => {
-            onSubmitForm(values.email)
+        onSubmit: async values => {
+          let result = await useUpdateSubcriber(values.email);
+          result === 200 ? toast.success("Subcriber Successfully") : toast.warning("Subcriber Failed") 
         },
     });
     return (
-        <Box>
+        <Box w="100%">
             <Flex
                 bg={useColorModeValue('red', 'gray.800')}
                 color={useColorModeValue('white', 'white')}

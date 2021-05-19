@@ -13,8 +13,7 @@ import 'aos/dist/aos.css'
 import {
     Modal, ModalOverlay,
 } from '@chakra-ui/react';
-
-
+import {RecoilRoot} from 'recoil';
 const override = css`
 position: absolute;
   top: 50%;
@@ -33,6 +32,7 @@ function Application({ Component, pageProps }: AppProps) {
         AOS.init({duration:2000}) 
     }, []);
     return (
+        <RecoilRoot>
         <Chakra cookies={pageProps.cookies}>
             
             <Layout title="Home | Modern News" px={{ base: '.6em', md: '1.2em' }} py="1.4em">
@@ -47,6 +47,7 @@ function Application({ Component, pageProps }: AppProps) {
             </Layout>
            
         </Chakra>
+        </RecoilRoot>
     );
 }
 

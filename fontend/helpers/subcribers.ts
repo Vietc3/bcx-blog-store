@@ -9,7 +9,6 @@ export const useUpdateSubcriber = async (email: string) => {
     else {
         const data = await fetch(URL_BASE_SUBCRIBER)
         const result = await data.json();
-        console.log(result);
         result.Email.email.push(email)
         const response = await fetch(URL_BASE_SUBCRIBER, {
             method: "PUT",
@@ -18,6 +17,8 @@ export const useUpdateSubcriber = async (email: string) => {
             },
             body: JSON.stringify(result)
         })
-        return response.json()
+        console.log(response.status);
+        
+        return response.status
     }
 }

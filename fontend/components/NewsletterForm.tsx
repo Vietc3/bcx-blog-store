@@ -1,26 +1,47 @@
 import React from 'react';
-import { Text, Input, Button, Link, BoxProps } from '@chakra-ui/react';
+import { Text, Input, Button, chakra, BoxProps } from '@chakra-ui/react';
 import Card from './cards/Card';
-interface Props extends BoxProps {
-    onSubmitForm: (email: string) => void;
-}
+import {
+    FaPaperPlane,
+} from "react-icons/fa";
+import { useFormik } from 'formik';
+import { toast } from "react-toastify";
 
-const NewsletterForm = ({ onSubmitForm, ...props }: Props) => {
+import { useUpdateSubcriber } from '../helpers/subcribers';
+const NewsletterForm = () => {
+
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+        },
+        onSubmit: async values => {
+            let result = await useUpdateSubcriber(values.email);
+            result === 200 ? toast.success("Subcriber Successfully") : toast.warning("Subcriber Failed")
+        },
+    });
+
     return (
-        <Card textAlign="center" {...props}>
-            <Text color="primary" fontWeight="bold" margin=".5rem">
-                Subscribe Our Newsletter
+        <Card textAlign="center" w="100%" bg="red">
+            <Text color="white" fontWeight="bold" margin=".5rem">
+                Get the lastest updates about out stories.
             </Text>
-            <Input variant="outline" placeholder="Your Email Address" borderRadius={'full'} margin=".5rem" />
-            <Button bgColor="primary" color="light" borderRadius={'full'} width="100%" margin=".5rem">
-                Subscribe
+            <Text color="white" fontWeight="bold" margin=".5rem">
+                Subcribe to our newsletter now!
+            </Text>
+            <chakra.form onSubmit={formik.handleSubmit}>
+                <Input id="email"
+                    name="email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email} variant="outline" bg="white" placeholder="Your Email Address" borderRadius={'full'} margin=".5rem" />
+                <Button type="submit" leftIcon={<FaPaperPlane />} bgColor="black" color="white" borderRadius={'full'} width="100%" margin=".5rem">
+                    Subscribe
             </Button>
-            <Text fontSize=".7rem" margin="3px">
+            </chakra.form>
+            <Text fontSize=".7rem" color="white" margin="3px">
                 By subscribing, you agree to our{' '}
-                <Link href="/privacy-policy" target="_blank" color="primary">
-                    Privacy Policy
-                </Link>
+
             </Text>
+
         </Card>
     );
 };
