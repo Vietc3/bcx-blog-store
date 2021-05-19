@@ -25,7 +25,7 @@ interface Props extends BoxProps {
 const SubcribeForm = ({ onSubmitForm, ...props }: Props) => {
     const formik = useFormik({
         initialValues: {
-            email:null,
+            email:"",
         },
         onSubmit: values => {
             onSubmitForm(values.email)
