@@ -257,7 +257,7 @@ const NAV_ITEMS: Array<NavItem> = [
 
     {
         label: 'HOME',
-        href: 'home',
+        href: '/',
     },
     {
         label: 'VIDEOS',

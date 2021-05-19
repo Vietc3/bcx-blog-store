@@ -4,6 +4,7 @@ import LastestCard from '../components/views/homepage/Lastest';
 import SubcribeForm from '../components/forms/SubscribeForm';
 import { GetStaticProps } from 'next';
 import {useGetArticles} from '../helpers/articles';
+import {useUpdateSubcriber} from '../helpers/subcribers';
 
 
 type Props = {
@@ -16,7 +17,7 @@ const IndexPage = ({ articles,featured }: Props) => {
     return (<>
             <TrendingCard articles={featured}/>
             <LastestCard articles={articles}/>
-            <SubcribeForm onSubmitForm={() => { }} marginY="10px" />
+            <SubcribeForm onSubmitForm={(email:string) => {useUpdateSubcriber(email)}} marginY="10px" />
             </>
     );
 };

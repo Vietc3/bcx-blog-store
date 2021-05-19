@@ -1,36 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
+    chakra,
     Box,
     Button,
     BoxProps,
     Flex,
     Text,
-    IconButton,
     InputGroup,
     InputRightElement,
     Input,
-    Stack,
-    Collapse,
-    Icon,
-    Link,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
     useColorModeValue,
-    useBreakpointValue,
-    useDisclosure,
     Spacer,
 } from '@chakra-ui/react';
 import styles from '../../constants/styles';
 import {
     FaPaperPlane,
 } from "react-icons/fa";
+import { useFormik } from 'formik';
 interface Props extends BoxProps {
-    onSubmitForm: (email: string) => void;
+    onSubmitForm: any
 }
 
 const SubcribeForm = ({ onSubmitForm, ...props }: Props) => {
+    const formik = useFormik({
+        initialValues: {
+            email:null,
+        },
+        onSubmit: values => {
+            onSubmitForm(values.email)
+        },
+    });
     return (
         <Box>
             <Flex
@@ -50,24 +50,31 @@ const SubcribeForm = ({ onSubmitForm, ...props }: Props) => {
                         Get the lastest updates about out stories.
                     </Text>
                     <Text color="primary" ml="1px" mt=".5rem" >
-                       Subcribe to our newsletter now!
+                        Subcribe to our newsletter now!
                     </Text>
-                    <Spacer/>
-                    <InputGroup w="30%">
-                        <InputRightElement
-                            w="30%"
-                            borderRadius={30}
-                            bgColor="black"  
-                        >
-                            <Button
-                            zIndex="15"
-                                p={2}
-                                leftIcon={<FaPaperPlane />} colorScheme="black" variant="solid">
-                                SUBCRIBE
+                    <Spacer />
+                    <chakra.form w="30%" onSubmit={formik.handleSubmit}>
+                        <InputGroup w="100%">
+                            <InputRightElement
+                                w="30%"
+                                borderRadius={30}
+                                bgColor="black"
+                            >
+                                <Button
+                                    type="submit"
+                                    zIndex="15"
+                                    p={2}
+                                    leftIcon={<FaPaperPlane />} colorScheme="black" variant="solid">
+                                    SUBCRIBE
                           </Button>
-                        </InputRightElement>
-                        <Input bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Enter Email Address" />
-                    </InputGroup>
+                            </InputRightElement>
+                            <Input
+                            id="email"
+                            name="email"
+                            onChange={formik.handleChange}
+                                value={formik.values.email} bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Enter Email Address" />
+                        </InputGroup>
+                    </chakra.form>
                 </Flex>
 
 
