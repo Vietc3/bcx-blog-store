@@ -115,9 +115,11 @@ const Article = ({ article }: Props) => {
 
             <Box pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} flexDirection={{ base: 'column', md: 'row' }}>
-                <Box h={{ base: '380px', md: '550', lg: '630px' }}>
+
+                {article.youtube_url && article.youtube_url !=="" ?<Box h={{ base: '380px', md: '550', lg: '630px' }}>
                     <YoutubeEmbed youtube_url={article.youtube_url} />
-                </Box>
+                </Box> : null}
+
                 <Box as="section" d="flex" flex="3">
                     <Box as="article" margin=".5rem">
                         <Heading marginY="1.4rem" color={colors.secondary}>

@@ -50,8 +50,8 @@ const TrendingCard = ({
                 }}>
                         {
                             slides.map((slide: any) => (
-                                <Box key={slide.id} h="100%" w="full" boxSize="full" shadow="md" flex="none" >
-                                    <PostCard
+                                <Box key={slide.id} h="100%" w="full" cursor="pointer" boxSize="full" shadow="md" flex="none" >
+                                    <PostCard 
                                         article={slide}
                                         idArticle={slide.id}
                                         alt={`Picture of ${slide.title}`}

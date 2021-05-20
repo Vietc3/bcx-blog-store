@@ -16,9 +16,7 @@ export const useUpdateSubcriber = async (email: string) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(result)
-        })
-        console.log(response.status);
-        
+        })     
         return response.status
     }
 }

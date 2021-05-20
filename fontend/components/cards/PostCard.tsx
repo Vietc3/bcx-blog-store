@@ -30,6 +30,7 @@ const PostCard = ({ idArticle, article }: Props) => {
       h="100%"
       alignItems="center"
       justifyContent="center"
+      onClick={()=>onClick()}
     >
       <Box
         bg={useColorModeValue("white", "gray.800")}

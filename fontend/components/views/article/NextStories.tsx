@@ -11,16 +11,26 @@ type Props = {
 const NextStories = ({
     articles,
 }: Props) => {
+    const index = Math.floor(Math.random() * articles.length)
+
+    const items = [];
+    
+    items.push(articles[index])
+    items.push(articles[index === articles.length ? index-1 :index+1])
+
+
+
     return (
         <>
             <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}>
                 <Box pl={{ base: '0px', lg: "70px" }}
                     pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
-                    {articles.map((post: any) => (
-                        <Box key={post._id+post.id}>
-                            <PostLastestCard post={post} />
-                        </Box>
-                    ))}
+                    {items.map((post: any) => 
+                        (
+                            <Box key={post._id + post.id}>
+                                <PostLastestCard post={post} />
+                            </Box>
+                        ))}
                 </Box>
 
             </Box>
